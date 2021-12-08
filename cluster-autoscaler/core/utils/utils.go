@@ -125,7 +125,7 @@ func GetNodeInfosForGroups(nodes []*apiv1.Node, nodeInfoCache map[string]*schedu
 				continue
 			} else {
 				klog.Errorf("Unable to build proper template node for %s: %v", id, err)
-				return map[string]*schedulernodeinfo.NodeInfo{}, errors.ToAutoscalerError(errors.CloudProviderError, err)
+				continue
 			}
 		}
 		result[id] = nodeInfo
