@@ -426,7 +426,7 @@ func (m *AwsManager) buildNodeFromTemplate(asg *asg, template *asgTemplate) (*ap
 
 // availableResources returns information about node resources (capacity/allocatable) for a particular instance type
 func (m *AwsManager) availableResources(instanceType string) (*instanceResourceInfo, error) {
-	awsTemplate, ok := InstanceTypes[instanceType]
+	awsTemplate, ok := m.instanceTypes[instanceType]
 	if !ok {
 		return nil, fmt.Errorf("unknown instance type %s", instanceType)
 	}
