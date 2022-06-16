@@ -20,7 +20,7 @@ set -o pipefail
 DIR=$(dirname $0) 
 
 # Install tools we need
-go install ${DIR}/../../../github.com/client9/misspell/cmd/misspell
+# go install ${DIR}/../../../github.com/client9/misspell/cmd/misspell
 
 # Spell checking
 git ls-files --full-name | grep -v -e vendor | grep -v cluster-autoscaler/cloudprovider/magnum/gophercloud|  grep -v cluster-autoscaler/cloudprovider/digitalocean/godo | xargs misspell -error -o stderr
