@@ -1,10 +1,12 @@
 version: "2017-09-20"
 pipeline:
 - id: build
-  overlay: ci/golang-1-13
+  vm_config:
+    type: linux
+    image: cdp-runtime/go
+    size: large
   type: script
   working_dir: /go/src/k8s.io/autoscaler
-  vm: large
   env:
     VERSION: "v1.18.2-internal"
     DOWNSTREAM: "registry-write.opensource.zalan.do/teapot/kube-cluster-autoscaler"
@@ -12,7 +14,7 @@ pipeline:
   - desc: "Installing dependencies"
     cmd: |
       apt-get update
-      apt-get install libseccomp-dev -qq
+      apt-get install libseccomp-dev python -qq
       hack/install-verify-tools.sh
       go version
       export PATH=$GOPATH/bin:$PATH
